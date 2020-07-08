@@ -1,0 +1,40 @@
+<ion-content  >
+  <div> 
+    <ion-label style="width: 380px;" class="ion-text-center" > 
+    <h1><b>Welcome Admin</b></h1> 
+    <form [formGroup]="loginForm"  (ngSubmit)="onClickLogin()">
+      <ion-item color="transparent" style=" margin-top: 30px;" class="ion-no-padding">
+        <ion-label position="floating">Username</ion-label>
+        <ion-input  formControlName="username"></ion-input>
+      </ion-item>
+      <div *ngIf="submitted && f.username.errors">  
+        <div  style=" justify-content: space-between;" class="error-text">{{(f.username.errors.required) ? 'username is required' :
+          (f.username.errors) ? 'Username is not valid.' :  ''}}</div>
+      </div>
+      <ion-item color="transparent" style=" margin-top: 30px;" class="ion-no-padding">
+        <ion-label position="floating">Password</ion-label>
+        <ion-input formControlName="password"  type="{{typePass}}"></ion-input>
+        <ion-icon class="passwordIcon" slot="end" name="{{imgPass}}" (click)="onClickShow()"></ion-icon>
+      </ion-item>
+      <div *ngIf="submitted && f.password.errors">  
+        <div style=" justify-content: space-between;" class="error-text">{{(f.password.errors.required) ? 'Password is required' :
+          (f.password.errors.minlength) ? 'Password must be at least 4 characters' :  ''}}</div>
+      </div>
+      <p style="margin-top: 20px;">Note : Default username is admin and default password is admin. For demonstration only.</p>
+   </form> 
+    <div style="
+    margin-top: 8px;"> 
+      <p style="
+      width: 100%;
+      text-align: left;"> <a style="cursor: pointer; text-decoration: none;"> Create an account</a></p>
+      <p style="
+      width: 100%;
+      text-align: right;"><a style="  text-decoration: none;" [routerLink]="['/reset-password']">Forgot password?</a></p>
+    </div> 
+     
+     <ion-button  style=" margin-top: 18px; width: 100%;" (click)="onClickLogin()"> 
+      Sign in</ion-button> 
+    </ion-label>
+  </div>
+ </ion-content> 
+ <google-adsense ></google-adsense>

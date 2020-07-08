@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title  (click)="onClickRouter([])">
+      <ion-text  >
+        <b>RENT MOBI</b>
+      </ion-text>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onClickRouter([''])">
+        Movies
+      </ion-button> 
+      <ion-button (click)="onClickRouter(['login'])">
+        Get started
+      </ion-button>   
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> 
+
+<ion-content>
+<div class="coverpage" style="
+background-image: url('https://images.firstcovers.com/covers/t/the_dark_knight_rises-4511.jpg');
+"></div>
+ <ion-row style="margin-right: 20px;
+ margin-left: 20px;">
+   <ion-col class="head"
+    size="8"
+    size-sm="8"
+    size-lg="2"
+    size-md="2">
+    <div class="cardmovie">
+      <img src="https://img.flixanity.app/300/450/thumbs/movie_a7b6ec2149833cb61ce31bc071d63f0f.jpg">
+    </div>
+   </ion-col>
+   <ion-col 
+   size="12"
+   size-sm="12"
+   size-lg="10"
+   size-md="10" class="head">
+      <h1 class="title"><b>MOVE ON</b></h1>
+      <ion-badge slot="end">12%</ion-badge>
+      <p  class="desc wraptext">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</p> 
+      <p class="other"><b>Starring: </b>John Felix</p>
+      <p><b>Director: </b>Juand Dela Cruz</p>
+      <p><b>Genre: </b>Horror</p>
+      <ion-text color="primary"><p  class="rentnow-text">You can rented a movie for 3 days maximum only.</p></ion-text>
+      <ion-button class="rentnow" color="danger" fill="outline">
+        Rent now
+      </ion-button>
+  </ion-col>
+ </ion-row>
+</ion-content>

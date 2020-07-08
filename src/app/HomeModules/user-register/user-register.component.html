@@ -1,0 +1,263 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title  (click)="onClickRouter([''])">
+      <ion-text  >
+        <b>RENT MOBI</b>
+      </ion-text>
+    </ion-title> 
+  </ion-toolbar>
+</ion-header> 
+<ion-content>
+  <ion-row>
+    
+  <ion-col size="12"> 
+    <ion-row style="background-color: #003A6C;
+    padding-bottom: 20px;
+    padding-top: 20px; "  >
+      <ion-col  style="
+      margin-bottom: 20px;
+      margin-top: 20px; "  size="12" size-lg="6" size-md="6" size-sm="12"  >
+        <img loading="lazy" src="https://image.freepik.com/free-vector/isometric-cinema-illustration-with-spectators_52683-41207.jpg" alt="banner of RENT MOBI">
+      </ion-col>
+
+      <ion-col size="10" size-lg="6" size-md="6" size-sm="10"
+      offset="1"  offset-lg="0" offset-md="0" offset-sm="1">
+        <ion-card color="dark">
+          <div class="card">
+            <div> 
+              <h1 style="font-size: 40px;
+              margin-bottom: 10px;
+              margin-top: 10px;color: #000000;" >Sign up</h1> 
+              <form [formGroup]="registerForm"  (ngSubmit)="onClickCreate()">
+                <ion-item color="transparent" style=" margin-top: 30px;" class="ion-no-padding">
+                  <ion-label position="floating">Email</ion-label>
+                  <ion-input  formControlName="email"></ion-input>
+                </ion-item>
+                <div *ngIf="submitted && f.email.errors">  
+                  <div class="error-text">{{(f.email.errors.required) ? 'Email is required' :
+                    (f.email.errors) ? 'Email is not valid.' :  ''}}</div>
+                </div>
+                <ion-item color="transparent" style=" margin-top: 30px;" class="ion-no-padding">
+                  <ion-label position="floating">Password</ion-label>
+                  <ion-input formControlName="password"  type="{{typePass}}"></ion-input>
+                  <ion-icon class="passwordIcon" slot="end" name="{{imgPass}}" (click)="onClickShow()"></ion-icon>
+                </ion-item>
+                <div *ngIf="submitted && f.password.errors">  
+                  <div class="error-text">{{(f.password.errors.required) ? 'Password is required' :
+                    (f.password.errors.minlength) ? 'Password must be at least 6 characters' :  ''}}</div>
+                </div>
+                <ion-item color="transparent" style=" margin-top: 30px;" class="ion-no-padding">
+                  <ion-label position="floating">Mobile number</ion-label>
+                  <ion-input formControlName="mobile_number" ></ion-input>
+                </ion-item>
+                <div *ngIf="submitted && f.mobile_number.errors">  
+                  <div class="error-text">{{(f.mobile_number.errors.required) ? 'Mobile number is required' :
+                    (f.mobile_number.errors) ? 'Invalid pattern . ex. +639xxxxxxxxxx and 09xxxxxxxxx' :  ''}}</div>
+                </div>
+                <p>Note : It will not save in database. For demonstration only.</p>
+            </form>  
+            <ion-button (click)="onClickCreate()" 
+                expand="full"
+                style="margin-top: 30px;" >
+                  Create an account
+            </ion-button>
+            </div>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-col>
+  <ion-col
+   offset="1"
+   size="10"
+   style="padding-bottom:25px;
+   padding-top: 50px;" class="ion-align-self-center"> 
+   <div>
+     
+    <ion-text><h3>Features</h3></ion-text>
+    <ion-row>
+      <ion-col
+      size="12"
+      size-sm="12"
+      size-md="12"
+      size-lg="4">
+        <div
+        style="padding:10px; ">
+          <div  style="text-align:center">  <img loading="lazy"
+            style="
+            margin-top: 15px;
+            border-radius: 10px;
+            width: 180px;
+            height: 180px;"
+            src="https://image.freepik.com/free-vector/teamwork-people-with-puzzle-pieces_24877-54950.jpg"
+            alt="community in other social media influencers"></div>
+          <ion-text style="text-align:center;color: #25A0E2;"><h2>Community</h2></ion-text>
+            <ion-card-content>
+              <ion-text ><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nec ultrices dui sapien eget mi proin sed.</p></ion-text>
+            </ion-card-content>
+        </div>
+      </ion-col>
+      <ion-col
+      size="12"
+      size-sm="12"
+      size-md="12"
+      size-lg="4">
+        <div
+        style="padding:10px;">
+          <div style="text-align: center;">
+            <img loading="lazy"
+            style="
+            margin-top: 15px;
+            border-radius: 10px;
+            width: 180px;
+            height: 180px;"
+            src="https://image.freepik.com/free-vector/business-flat-vector-concept-man-fly-with-rocket-back-metaphor-fast-growth_8073-751.jpg"
+            alt="boosting my social media account"></div>
+            <ion-text style="text-align:center;color: #25A0E2;"><h2>Boost</h2></ion-text>
+          <ion-card-content>
+            <ion-text><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis molestie a iaculis at erat pellentesque adipiscing.</p></ion-text>
+          </ion-card-content>
+        </div>
+      </ion-col>
+      <ion-col
+      size="12"
+      size-sm="12"
+      size-md="12"
+      size-lg="4">
+        <div
+        style="padding:10px;">
+        <div style="text-align: center;"> 
+          <img loading="lazy"
+          style="
+          margin-top: 15px;
+          border-radius: 10px;
+          width: 180px;
+          height: 180px;"
+          src="https://image.freepik.com/free-vector/happy-businessman-earning-money-illustration_74855-5522.jpg"
+          alt="earn money in social media"></div>
+          <ion-text style="text-align:center;color: #25A0E2;"><h2>Earn</h2></ion-text>
+          <ion-card-content>
+            <ion-text  ><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Odio morbi quis commodo odio aenean sed adipiscing diam donec. Mi quis hendrerit dolor magna eget est.
+            </p>
+            </ion-text>
+          </ion-card-content>
+        </div>
+      </ion-col>
+    </ion-row>
+   </div>
+  </ion-col>
+
+  <ion-col
+   offset="1"
+   size="10"
+   style="padding-bottom: 50px;
+   padding-top: 25px;">
+    <ion-text><h3>Supported social media</h3></ion-text>
+    <ion-row>
+      <ion-col
+      size="12"
+      size-sm="12"
+      size-md="6"
+      size-lg="6"> 
+        <div>  
+          <ion-card-header> 
+            <ion-card-title style="color: #25A0E2;">
+              <ion-icon name="logo-facebook" style="margin-right: 10px"></ion-icon>Facebook</ion-card-title>
+          </ion-card-header> 
+          <ion-card-content>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et netus et malesuada fames ac turpis egestas maecenas pharetra. Netus et malesuada fames ac turpis egestas sed tempus.
+          </ion-card-content>
+        </div> 
+      </ion-col>
+      <ion-col
+      size="12"
+      size-sm="12"
+      size-md="6"
+      size-lg="6"> 
+        <div>  
+          <ion-card-header> 
+            <ion-card-title style="color: #25A0E2;">
+              <ion-icon name="logo-twitter" style="margin-right: 10px"></ion-icon>Twitter</ion-card-title>
+          </ion-card-header> 
+          <ion-card-content>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultricies mi eget mauris pharetra et. Sapien eget mi proin sed libero.
+          </ion-card-content>
+        </div> 
+      </ion-col>
+      <ion-col
+      size="12"
+      size-sm="12"
+      size-md="6"
+      size-lg="6"> 
+        <div>  
+          <ion-card-header> 
+            <ion-card-title style="color: #25A0E2;">
+              <ion-icon name="logo-instagram" style="margin-right: 10px"></ion-icon>Instagram</ion-card-title>
+          </ion-card-header> 
+          <ion-card-content>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed nisi lacus sed viverra tellus in hac. Vel risus commodo viverra maecenas.
+          </ion-card-content>
+        </div> 
+      </ion-col>
+      <ion-col
+      size="12"
+      size-sm="12"
+      size-md="6"
+      size-lg="6"> 
+        <div>  
+          <ion-card-header> 
+            <ion-card-title style="color: #25A0E2;">
+              <ion-icon name="logo-youtube" style="margin-right: 10px"></ion-icon>Youtube</ion-card-title>
+          </ion-card-header> 
+          <ion-card-content>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Molestie at elementum eu facilisis sed. Dictum non consectetur a erat nam at lectus urna duis.
+          </ion-card-content>
+        </div> 
+      </ion-col>
+    </ion-row> 
+  </ion-col>
+  
+  <ion-col
+   offset="1"
+   size="10"
+   style="padding-bottom: 50px;
+   padding-top: 25px;">
+    <ion-text>
+      <h3>Why RENT MOBI?</h3>
+    </ion-text>
+    <ion-card-content>
+      <ion-text><p  ><a (click)="openWindow('https://www.redcoresolutions.com/solutions/#')">Red Core Solution</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.: 
+      </p> 
+        <p style=" margin-left: 20px;">1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et  .</p> 
+        <p style=" margin-left: 20px;">2. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod </p> 
+        <p style=" margin-left: 20px;">3. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor  et dolore magna aliqua.</p>  
+        <p style=" margin-left: 20px;">4. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>  
+        <p style=" margin-left: 20px;">5. Lorem ipsum dolor sit amet,  tempor incididunt ut labore et dolore magna aliqua.</p></ion-text>
+    </ion-card-content>
+  </ion-col>
+
+  <ion-col
+  offset="1"
+  size="10"
+  style="  
+  padding-top: 52px;" > 
+  </ion-col>
+  <ion-col style="margin-top: 250px;" size="12">
+    <ion-item color="dark">
+      <p style="margin: 20px;">©2020, RENT MOBI</p>
+      <ion-avatar (click)="openWindow('https://www.facebook.com/RENT MOBIOfficial')"  style="margin-left:4px; cursor: pointer;" slot="end">
+        <img loading="lazy" src="https://img.icons8.com/fluent/80/000000/facebook-new.png" alt="facebook"> 
+      </ion-avatar>
+      <ion-avatar style="margin-left:4px; cursor: pointer;" slot="end">
+        <img loading="lazy" src="https://img.icons8.com/fluent/80/000000/instagram-new.png" alt="instagram"> 
+      </ion-avatar>
+      <ion-avatar style="margin-left:4px; cursor: pointer;" slot="end">
+        <img loading="lazy" src="https://img.icons8.com/fluent/80/000000/twitter.png" alt="twitter"> 
+      </ion-avatar>
+      <ion-avatar style="margin-left:4px; cursor: pointer;" slot="end">
+        <img loading="lazy" src="https://img.icons8.com/color/80/000000/youtube.png" alt="youtube"> 
+      </ion-avatar>
+    </ion-item>
+  </ion-col>
+  </ion-row>
+</ion-content>

@@ -1,0 +1,45 @@
+
+.coverpage { 
+    min-height: 500px; 
+    opacity: 0.2; 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .cardmovie{ 
+    width: 250px;
+    height: 300px;
+    border-radius: 10px;
+    img{
+        width: 156px;
+        height: 240px;
+        border-radius: 10px;
+    }
+  }
+  .head{
+      bottom: 80px;
+  }
+  .title{
+      font-size: 50px;
+  }
+  .desc{ 
+    font-size: 17px;
+    font-weight: lighter;
+  }
+  p{
+      margin:0px
+  }
+  .other{
+      margin-top: 25px;
+  }
+
+  .rentnow{
+    margin-top: 8px;
+    width: 40%;
+  }
+  .rentnow-text{
+    margin-top: 25px;
+    font-size: 14px;
+  }

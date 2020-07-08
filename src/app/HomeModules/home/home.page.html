@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title >
+      <ion-text  >
+        <b>RENT MOBI</b>
+      </ion-text>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button  (click)="onClickRouter(['admin-login'])">
+        Admin
+      </ion-button> 
+      <ion-button (click)="onClickRouter([])">
+        Movies
+      </ion-button> 
+      <ion-button *ngIf="hasuser == ''" (click)="onClickRouter(['','login'])">
+        Get started
+      </ion-button> 
+      <ion-button *ngIf="hasuser != ''" >
+        Rented
+      </ion-button> 
+      <ion-button *ngIf="hasuser != ''" (click)="onClickLogout()">
+        Logout 
+      </ion-button>  
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>  
+<ion-content> 
+  <ion-row >
+    <ion-col *ngFor="let data of fakeMovies" 
+    size="6"
+    size-sm="6"
+    size-md="4"
+    size-lg="2"> 
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img [src]="data.img"  >
+          </div>
+          <div class="flip-card-back">
+            <h2 >{{data.name}}</h2>  
+            <ion-badge slot="end">{{data.rate}}%</ion-badge>
+            <p class="wraptext">{{data.desc}}</p> 
+            <ion-button (click)="onClickRent(data)" fill="outline" color="light">
+              Rent
+            </ion-button> 
+          </div>
+        </div>
+      </div>     
+    </ion-col>
+  </ion-row> 
+</ion-content>

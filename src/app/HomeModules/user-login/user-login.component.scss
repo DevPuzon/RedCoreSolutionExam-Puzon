@@ -1,0 +1,38 @@
+
+  ion-col{
+      
+    padding: 0px;
+  }
+  ion-text{
+    p{
+      font-size: 18px;
+    }
+  }
+  h3{
+    font-size: 38px;
+  }
+  h2{
+    font-size: 29px;
+  }ion-card-content{
+    font-size: 18px; 
+  }
+  ion-card-title{
+    
+    font-size: 29px;
+  }
+  a{cursor: pointer;}
+  .card{  
+    display: flex;  
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-right: 30px;
+    margin-left: 30px;
+    div{
+      width: 100%; 
+    }
+  }
+  ion-card{
+    height: auto; 
+    max-width: 90%; 
+    min-width: 70%; 
+  }
