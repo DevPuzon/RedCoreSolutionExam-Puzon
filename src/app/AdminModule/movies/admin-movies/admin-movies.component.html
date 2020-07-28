@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button  > 
+      </ion-menu-button>
+    </ion-buttons>
+     <ion-title>Movies</ion-title> 
+   </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item> 
+    <ion-label>
+      <input class="search"
+      placeholder="Search: ">
+    </ion-label>
+      
+    <ion-button (click)="addMovies()" >Add</ion-button>
+  </ion-item>
+  <div     #TABLE class="example-container mat-elevation-z8">
+    <table #table style="padding-left: 120px;height: 450px" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+ 
+      <ng-container matColumnDef="movie_id" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header ><p style="width:200px ;"> Id</p> </th>
+        <td mat-cell *matCellDef="let element" ><p style="width: 200px;"> {{element.movie_id}}</p> </td>
+      </ng-container>
+     
+      <ng-container matColumnDef="thumbnail">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header><p style="width:120px ;"> Thumbnail</p> </th>
+        <td mat-cell *matCellDef="let element"> <img style="height:120px;width:120px" [src]="element.thumbnail"> </td>
+      </ng-container>
+ 
+
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> <p style="width:80px ;"> Title</p> </th>
+        <td mat-cell *matCellDef="let element"><p style="width: 80px;"> {{element.title}} </p>  </td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> <p style="width:200px ;"> Description</p> </th>
+        <td mat-cell *matCellDef="let element"><p class="wraptext" style="width: 200px;"> {{element.description}}</p> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="rate" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  <p style="width:60px ;"> Rate</p> </th>
+        <td mat-cell *matCellDef="let element"  ><p  style="margin-left: 10px;margin-right: 10px;"> 100% </p> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdAt" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  <p style="width:120px ;"> Created At</p> </th>
+        <td mat-cell *matCellDef="let element"  ><p  style="margin-left: 10px;margin-right: 10px;"> {{element.createdAt}} </p> </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="updatedAt" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> <p style="width:120px ;"> Updated At</p> </th>
+        <td mat-cell *matCellDef="let element"  ><p  style="margin-left: 10px;margin-right: 10px;"> {{element.updatedAt}} </p> </td>
+      </ng-container>
+ 
+      <ng-container matColumnDef="action" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  <p style="width:120px ;"> Action</p>  </th>
+        <td mat-cell *matCellDef="let element"  > 
+         <ion-buttons>
+          <ion-button (click)="updateMovies(element.movie_id)" color="success">
+            <ion-icon slot="icon-only" name="pencil" ></ion-icon>
+          </ion-button>
+          <ion-button (click)="deleteMovies(element.movie_id)" color="danger">
+            <ion-icon slot="icon-only" name="trash" ></ion-icon>
+          </ion-button> 
+         </ion-buttons> 
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr 
+      class="element-row" 
+       mat-row *matRowDef="let row; columns: displayedColumns;index as i"
+        ></tr>
+    </table>
+     
+  </div>
+ 
+</ion-content>

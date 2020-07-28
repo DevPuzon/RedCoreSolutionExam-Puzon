@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { CustomHttpService } from 'src/app/Utils/custom-http.service';
 
 @Component({
   selector: 'app-home',
@@ -10,10 +11,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class HomePage implements OnInit {
 
-  hasuser='';
-  fakeMovies : any;
- 
+  hasuser=''; 
+  datas = new Array<any>();
   constructor(private router: Router,
+    private custoHttp :CustomHttpService,
     private loadingController:LoadingController,
     private http: HttpClient,) {
     if(localStorage.getItem("example_user_only")){
@@ -21,24 +22,31 @@ export class HomePage implements OnInit {
     }
   }
   async ngOnInit(): Promise<void> { 
+  
     var loading = await this.loadingController.create({ message: "Please wait ...."  });
-    await loading.present(); 
-    this.getResponse("https://run.mocky.io/v3/f72a8ae9-e741-4c51-a469-d231e46bcfe4")
-    .subscribe(res=>{
-      loading.dismiss();
-      this.fakeMovies = res;
-      // console.log(res);
-    });
+    await loading.present();  
+    this.custoHttp.getExec("movies").subscribe((snap:any)=>{
+      this.datas = snap.data; 
+      console.log(snap.data);
+      loading.dismiss();  
+    })
+
   }
 
-  onClickRent(item){
-    console.log(item);
-    if(this.hasuser == ''){
-      this.router.navigate(['login']);
-    }else{
-      this.router.navigate(['viewmovie',item.id]);
-    }
+  async onClickRent(data,isrent){ 
+    var loading = await this.loadingController.create({ message: "Please wait ...."  });
+    await loading.present(); 
+    data.isrented = isrent;
+    this.custoHttp.putExec("movies/rented",data,data.movie_id)
+    .subscribe((snap : any)=>{ 
+      loading.dismiss();
+      console.log(snap);
+      // setTimeout(() => {
+      //   window.location.reload()
+      // }, 1200);
+    })
   }
+   
   
   onClickRouter(urlrouter){
     this.router.navigate(urlrouter);
@@ -56,7 +64,6 @@ export class HomePage implements OnInit {
     .set('content-type', 'application/json') 
     return this.http
     .get(url, { headers: headers })
-  }
-
+  } 
 }
  

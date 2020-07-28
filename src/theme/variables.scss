@@ -48,7 +48,13 @@ $app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
   color: #AC181E; 
   justify-content: space-between;
 }
-
+.center-horizontal {
+ 
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center; 
+ }
 
 :root {
   /** primary **/

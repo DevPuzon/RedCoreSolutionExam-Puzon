@@ -5,6 +5,8 @@ import { CryptService } from 'src/app/Utils/crypt.service';
 import { ToastMessageService } from 'src/app/Utils/toast-message.service';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LoadingController } from '@ionic/angular';
+import { CustomHttpService } from 'src/app/Utils/custom-http.service';
 @Component({
   selector: 'app-user-register',
   templateUrl: './user-register.component.html',
@@ -19,9 +21,12 @@ export class UserRegisterComponent implements OnInit {
     private http: HttpClient,
      private toast:ToastMessageService,
      private route:ActivatedRoute,
+     private cusHttp:CustomHttpService,
+     private loadingController :LoadingController,
      private formBuilder : FormBuilder,
      private crypt:CryptService) {
     this.registerForm = this.formBuilder.group({
+      full_name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       mobile_number:['',[Validators.required,Validators.pattern('^(09|\\+639)\\d{9}$')]]
@@ -43,22 +48,28 @@ export class UserRegisterComponent implements OnInit {
   onClickRouter(urlrouter){
     this.router.navigate(urlrouter);
   }
-  onClickCreate(){
+  async onClickCreate(){
     this.submitted = true; 
     if(this.registerForm.invalid){
       return;
     }
-    this.getResponse("https://run.mocky.io/v3/c9f65e72-2358-4453-8c82-82a2fbf3bed9")
-    .subscribe((res:any)=>{
-      this.toast.presentToast(res.message);  
-    }); 
+    var loading = await this.loadingController.create({ message: "Please wait ...."  });
+    await loading.present(); 
+    var data ={
+      full_name:this.registerForm.value.full_name,
+      email:this.registerForm.value.email,
+      password:this.registerForm.value.password,
+      role:"User"
+    }
+    this.cusHttp.postExec("user",data)
+    .subscribe(async (res:any)=>{
+      loading.dismiss();
+      this.toast.presentToast(res.message);   
+      await this.router.navigateByUrl('/login');
+      setTimeout(() => {
+        window.location.reload();
+      }, 200);
+    });
   }
-
-  getResponse(url){
-    const headers = new HttpHeaders()
-    .set('cache-control', 'no-cache')
-    .set('content-type', 'application/json') 
-    return this.http
-    .get(url, { headers: headers })
-  }
+ 
 }

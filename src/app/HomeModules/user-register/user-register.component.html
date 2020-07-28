@@ -30,6 +30,15 @@
               margin-top: 10px;color: #000000;" >Sign up</h1> 
               <form [formGroup]="registerForm"  (ngSubmit)="onClickCreate()">
                 <ion-item color="transparent" style=" margin-top: 30px;" class="ion-no-padding">
+                  <ion-label position="floating">Fullname</ion-label>
+                  <ion-input  formControlName="full_name"></ion-input>
+                </ion-item>
+                <div *ngIf="submitted && f.full_name.errors">  
+                  <div class="error-text">{{(f.full_name.errors.required) ? 'Fullname is required' :
+                    (f.full_name.errors) ? 'Fullname is not valid.' :  ''}}</div>
+                </div>
+                
+                <ion-item color="transparent" style=" margin-top: 30px;" class="ion-no-padding">
                   <ion-label position="floating">Email</ion-label>
                   <ion-input  formControlName="email"></ion-input>
                 </ion-item>
@@ -37,6 +46,7 @@
                   <div class="error-text">{{(f.email.errors.required) ? 'Email is required' :
                     (f.email.errors) ? 'Email is not valid.' :  ''}}</div>
                 </div>
+
                 <ion-item color="transparent" style=" margin-top: 30px;" class="ion-no-padding">
                   <ion-label position="floating">Password</ion-label>
                   <ion-input formControlName="password"  type="{{typePass}}"></ion-input>

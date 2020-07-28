@@ -26,7 +26,7 @@
 </ion-header>  
 <ion-content> 
   <ion-row >
-    <ion-col *ngFor="let data of fakeMovies" 
+    <ion-col *ngFor="let data of datas" 
     size="6"
     size-sm="6"
     size-md="4"
@@ -34,15 +34,19 @@
       <div class="flip-card">
         <div class="flip-card-inner">
           <div class="flip-card-front">
-            <img [src]="data.img"  >
+            <img [src]="data.thumbnail"  >
           </div>
           <div class="flip-card-back">
-            <h2 >{{data.name}}</h2>  
-            <ion-badge slot="end">{{data.rate}}%</ion-badge>
-            <p class="wraptext">{{data.desc}}</p> 
-            <ion-button (click)="onClickRent(data)" fill="outline" color="light">
+            <h2 >{{data.title}}</h2>  
+            <ion-badge *ngIf="data.isrented == 'True'" color="danger" slot="end">Rented</ion-badge>
+            <ion-badge slot="end">100%</ion-badge>
+            <p class="wraptext">{{data.description}}</p> 
+            <ion-button *ngIf="!data.isrented || data.isrented == 'False'" (click)="onClickRent(data,'True')" fill="outline" color="light">
               Rent
-            </ion-button> 
+            </ion-button>
+            <ion-button *ngIf="data.isrented == 'True'" (click)="onClickRent(data,'False')" fill="outline" color="danger">
+              Return
+            </ion-button>  
           </div>
         </div>
       </div>     

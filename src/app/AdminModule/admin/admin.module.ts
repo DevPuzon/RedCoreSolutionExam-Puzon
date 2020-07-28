@@ -9,8 +9,12 @@ import { AdminPageRoutingModule } from './admin-routing.module';
 import { AdminPage } from './admin.page';
 import { AdminLoginComponent } from '../admin-login/admin-login.component';
 import { AdminUsersComponent } from '../admin-users/admin-users.component';
-import { AdminMoviesComponent } from '../admin-movies/admin-movies.component';
+ 
 import { DemoMaterialModule } from '../material-module';
+import { AdminMoviesComponent } from '../movies/admin-movies/admin-movies.component';
+import { AddmoviesComponent } from '../movies/addmovies/addmovies.component';
+import { UpdateMovisComponent } from '../movies/update-movis/update-movis.component';
+// import { entries } from 'src/app/app-routing.module';
 
 @NgModule({
   imports: [
@@ -18,11 +22,13 @@ import { DemoMaterialModule } from '../material-module';
     FormsModule, 
     ReactiveFormsModule,
     IonicModule, 
-    AdminPageRoutingModule,
+    AdminPageRoutingModule, 
     DemoMaterialModule,
-  ],
+  ], 
   declarations: [AdminPage,
-    AdminUsersComponent,
-    AdminMoviesComponent ]
+    AdminUsersComponent, 
+    AdminMoviesComponent,
+  AddmoviesComponent,
+UpdateMovisComponent ]
 })
 export class AdminPageModule {}

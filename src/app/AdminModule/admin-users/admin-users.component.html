@@ -20,7 +20,7 @@
   <div style="height: 450px"   #TABLE class="example-container mat-elevation-z8">
     <table #table style="padding-left: 120px;" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
  
-      <ng-container matColumnDef="id">
+      <ng-container matColumnDef="id" >
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Id</th>
         <td mat-cell *matCellDef="let element"> {{element.id}} </td>
       </ng-container> 

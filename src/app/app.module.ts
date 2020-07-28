@@ -9,7 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module'; 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
- 
+import { BlobModule } from 'angular-azure-blob-service';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminLoginComponent } from './AdminModule/admin-login/admin-login.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,6 +19,7 @@ import { DemoMaterialModule } from './AdminModule/material-module';
   entryComponents: [],
   imports: [BrowserModule,
      IonicModule.forRoot(),
+     BlobModule.forRoot(),
       AppRoutingModule,
       FormsModule,
       HttpClientModule, 

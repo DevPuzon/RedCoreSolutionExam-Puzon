@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastMessageService } from 'src/app/Utils/toast-message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoadingController } from '@ionic/angular';
+import { CustomHttpService } from 'src/app/Utils/custom-http.service';
+import { CryptService } from 'src/app/Utils/crypt.service';
 
 @Component({
   selector: 'app-user-login',
@@ -12,13 +14,15 @@ import { LoadingController } from '@ionic/angular';
 })
 export class UserLoginComponent implements OnInit {
   submitted=false;
-  loginForm: FormGroup;// convenience getter for easy access to form fields
+  loginForm: FormGroup; 
   get f() { return this.loginForm.controls; }
 
 
   constructor(private router:Router,
     private route:ActivatedRoute,
     private http: HttpClient,
+    private cusHttp:CustomHttpService,
+    private crypt:CryptService,
     private loadingController:LoadingController,
     private toast:ToastMessageService,
     private formBuilder: FormBuilder) {
@@ -53,16 +57,24 @@ export class UserLoginComponent implements OnInit {
     } 
     var loading = await this.loadingController.create({ message: "Please wait ...."  });
     await loading.present(); 
-    this.getResponse("https://run.mocky.io/v3/8ac4d947-89d7-47e0-8f1c-960c9c770f85")
-    .subscribe(async (res:any)=>{
-      loading.dismiss();
-      this.toast.presentToast(res.message);  
-      localStorage.setItem("example_user_only",res.email); 
-      await this.router.navigateByUrl('');
-      setTimeout(() => {
-        window.location.reload();
-      }, 200);
-    });  
+    var data ={ 
+      email:this.loginForm.value.email,
+      password:this.loginForm.value.password 
+    }
+    this.cusHttp.postNoAuthExec("user/access",data)
+    .subscribe(async (res:any)=>{  
+      if(res.access_token != null){ 
+        localStorage.setItem("app_token",this.crypt.encryptData(res.access_token));
+        this.toast.presentToast(res.message); 
+        setTimeout(async () => {  
+          await this.router.navigateByUrl('');
+          window.location.reload();
+        }, 2200);
+      }else{
+        loading.dismiss();
+        this.toast.presentToast(res.Error);
+      }
+    });
   }
 
   getResponse(url){
@@ -71,6 +83,5 @@ export class UserLoginComponent implements OnInit {
     .set('content-type', 'application/json') 
     return this.http
     .get(url, { headers: headers })
-  } 
-  
+  }  
 }

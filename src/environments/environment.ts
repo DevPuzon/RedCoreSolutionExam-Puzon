@@ -3,9 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
+  production: true,
   crypt_code: "[]`8271",
+  ConfigStorage:  {
+    sas: '?sv=2019-10-10&ss=bfqt&srt=sco&sp=rwdlacupx&se=2020-07-18T10:27:04Z&st=2020-07-18T02:27:04Z&spr=https&sig=cd%2B8y8s9DygeLe105cfTq0KSoDx3pPyAkBK6PNe0POM%3D',
+    storageAccount: 'sphv2',
+    containerName: 'randomproject', 
+    key: "PVIKvZEUBne+2R46SX042EvYp200tU2hZ5Ht3zOf4IdNqljiySgue2HmpNn61GZiMOcBHIyYGlszFCwP7JhYbA=="
+  }
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

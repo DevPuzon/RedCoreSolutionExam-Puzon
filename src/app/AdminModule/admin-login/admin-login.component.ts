@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastMessageService } from 'src/app/Utils/toast-message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoadingController } from '@ionic/angular';
+import { CustomHttpService } from 'src/app/Utils/custom-http.service';
+import { CryptService } from 'src/app/Utils/crypt.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -18,6 +20,8 @@ export class AdminLoginComponent implements OnInit {
   constructor(private router:Router,
     private route:ActivatedRoute,
     private http: HttpClient,
+    private cusHttp:CustomHttpService,
+    private crypt:CryptService,
     private loadingController:LoadingController,
     private toast:ToastMessageService,
     private formBuilder: FormBuilder) {
@@ -52,17 +56,24 @@ export class AdminLoginComponent implements OnInit {
     } 
     var loading = await this.loadingController.create({ message: "Please wait ...."  });
     await loading.present(); 
-    this.getResponse("https://run.mocky.io/v3/8ac4d947-89d7-47e0-8f1c-960c9c770f85")
-    .subscribe(async (res:any)=>{
-      loading.dismiss();
-      if(this.loginForm.value.username != 'admin'
-      && this.loginForm.value.password != 'admin'){ 
-        this.toast.presentToast("Incorrect credentials");   
-      } else{
-        this.toast.presentToast(res.message);
-        await this.router.navigateByUrl('/admin');   
+    var data ={ 
+      email:this.loginForm.value.username,
+      password:this.loginForm.value.password 
+    }
+    this.cusHttp.postNoAuthExec("user/access",data)
+    .subscribe(async (res:any)=>{  
+      console.log(res);
+      if(res.access_token != null){ 
+        localStorage.setItem("app_token",this.crypt.encryptData(res.access_token));
+        setTimeout(async () => {  
+          await this.router.navigateByUrl('admin');
+          window.location.reload();
+        }, 2200);
+      }else{
+        loading.dismiss();
+        this.toast.presentToast(res.Error);
       }
-    });  
+    });
   }
 
   getResponse(url){

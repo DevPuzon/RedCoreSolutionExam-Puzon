@@ -17,11 +17,11 @@ export class AdminPage implements OnInit {
       url: 'movies',
       icon: 'videocam',  
     }, 
-    {
-      title: 'Users',
-      url: 'users',
-      icon: 'people',  
-    }, 
+    // {
+    //   title: 'Users',
+    //   url: 'users',
+    //   icon: 'people',  
+    // }, 
   ]; 
   constructor(private router:Router,
     private route:ActivatedRoute,
